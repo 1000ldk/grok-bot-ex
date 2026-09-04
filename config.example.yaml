@@ -1,0 +1,35 @@
+# 監視間隔（watch モード）。CLI の --interval で上書き可能
+interval_seconds: 300
+
+# 条件が真のまま続くときの再通知間隔（秒）
+# 条件が偽→真に変わったときは、クールダウン中でも通知する
+cooldown_seconds: 3600
+
+# アラート状態の保存先（同じ条件の連打防止）
+state_file: .alert_state.json
+
+# アラート経路を試すときは、below を現在値より高く / above を低くしてください
+symbols:
+  - ticker: "^N225"
+    name: 日経平均
+    rules:
+      - type: price
+        op: below
+        value: 60000
+      - type: price
+        op: above
+        value: 72000
+      - type: abs_change_pct
+        value: 2.0
+
+  - ticker: "^GSPC"
+    name: S&P 500
+    rules:
+      - type: price
+        op: below
+        value: 7000
+      - type: price
+        op: above
+        value: 8500
+      - type: abs_change_pct
+        value: 1.5

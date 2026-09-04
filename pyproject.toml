@@ -1,0 +1,28 @@
+[project]
+name = "grok-bot-ex"
+version = "0.1.0"
+description = "株・指数の監視＋アラート（教育用MVP）。注文・自動売買は行いません。"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "yfinance>=0.2.40",
+    "PyYAML>=6.0",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+grok-bot = "grok_bot.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["grok_bot*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
